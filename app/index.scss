@@ -1,0 +1,13 @@
+$reg-text-color: rgb(29, 29, 29);
+
+html, body, #app {
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    color: $reg-text-color;
+}
+
+body {
+    background:rgb(255, 255, 255);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
