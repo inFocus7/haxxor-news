@@ -1,4 +1,6 @@
 $reg-text-color: rgb(29, 29, 29);
+$reg-link-color: rgb(14, 145, 206);
+$reg-select-color: rgb(201, 26, 143);
 
 html, body, #app {
     margin: 0;
@@ -9,5 +11,77 @@ html, body, #app {
 
 body {
     background:rgb(255, 255, 255);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: $reg-text-color;
+}
+
+.navbar-main {
+    font-size: 20px;
+    font-weight: 700;
+
+    .navbar-nav {
+        flex-direction: row !important;
+        align-items: center;
+    }
+
+    .nav-link {
+        padding-right: 15px;
+    }
+
+    .ico {
+        font-size: 30px;
+    }
+}
+
+.listing-title {
+    font-size: 20px;
+    color: $reg-link-color;
+}
+
+.info-left {
+    float: left;
+    margin-right: 10px;
+}
+
+.info-right {
+    float: right;
+    text-transform: capitalize;
+    margin-left: 10px;
+}
+
+.card-header {
+    padding: .50rem;
+}
+
+.badge {
+    line-height: inherit;
+}
+
+.card-footer {
+    padding: .50rem;
+}
+
+.posts {
+    padding-left: 0px;
+
+    li {
+        list-style: none;
+        margin-bottom: 15px;
+    }
+}
+
+.card-body {
+    padding: .75rem .5rem;
+
+    .listing-title {
+        margin-bottom: 0;
+    }
+}
+
+a {
+    color: $reg-link-color;
+}
+
+.loading {
+    margin: 0 auto;
+    color: $reg-link-color;
 }
