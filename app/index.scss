@@ -1,6 +1,7 @@
 $reg-text-color: rgb(29, 29, 29);
 $reg-link-color: rgb(14, 145, 206);
-$reg-select-color: rgb(201, 26, 143);
+$reg-select-color: rgb(248, 68, 128);
+$reg-hover-color: rgb(199, 61, 137);
 
 html, body, #app {
     margin: 0;
@@ -79,9 +80,46 @@ body {
 
 a {
     color: $reg-link-color;
+    text-decoration: none;
+
+    transition: transform 100ms;
+    -moz-transition: transform 100ms;
+    -o-transition: transform 100ms;
+    -webkit-transition: transform 100ms;
+
+    transition: color 200ms;
+    -moz-transition: color 200ms;
+    -o-transition: color 200ms;
+    -webkit-transition: color 200ms;
+}
+
+a:hover {
+    text-decoration: none;
+    color: $reg-hover-color;
+    transform: scale(.98)
 }
 
 .loading {
     margin: 0 auto;
     color: $reg-link-color;
+}
+
+.selected-nav-link {
+    color: $reg-select-color;
+    transform: scale(1.17); 
+}
+
+.selected-nav-link:hover {
+    color: $reg-select-color;
+    transform: scale(1.15)
+}
+
+.selected-nav-link:focus {
+    color: $reg-select-color;
+}
+
+.profile {
+    .username {
+        color: $reg-select-color;
+    }
 }

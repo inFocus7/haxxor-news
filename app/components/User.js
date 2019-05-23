@@ -39,6 +39,7 @@ export default class User extends React.Component {
 
         const user = this.state.user
         let by = this.props.match.params.view ? this.props.match.params.view : 'all' 
+        let def = by.charAt(0).toUpperCase() + by.slice(1)
 
         switch (by) {
             case 'stories':
@@ -60,7 +61,14 @@ export default class User extends React.Component {
                 <h1 className='username'>{user.id}</h1>
                 {user.about && <p className='about'>{ReactHtmlParse(user.about)}</p>}
 
-                <Navbar content={[{text: 'All', type: 'href', ref: `/user/${user.id}`}, {text: 'Stories', type: 'href', ref: `/user/${user.id}/stories`}, {text: 'Comments', type: 'href', ref: `/user/${user.id}/comments`}, {text: 'Polls', type: 'href', ref: `/user/${user.id}/polls`}]}/>
+                <Navbar 
+                    default={def} 
+                    content={[
+                        {text: 'All', type: 'href', ref: `/user/${user.id}`}, 
+                        {text: 'Stories', type: 'href', ref: `/user/${user.id}/stories`}, 
+                        {text: 'Comments', type: 'href', ref: `/user/${user.id}/comments`}, 
+                        {text: 'Polls', type: 'href', ref: `/user/${user.id}/polls`}]}/>
+                        
                 {user.submitted 
                     ? <Posts type='user' by={by} ids={user.submitted}/> 
                     : <h3>No posts found.</h3>}

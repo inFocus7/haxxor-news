@@ -10,8 +10,11 @@ import Loading from './Loading'
 // IMPORTANT:
 // IF IM FETCHING EVERYTHING TO FILTER OUT POSTS, MIGHT AS WELL SAVE ALL, THEN FILTER & SHOW
 
-function PostListing(props) {
+export function Post(props) {
     const post = props.post
+
+    let reps = post.kids
+    reps = reps ? reps.length : 0
 
     return (
         <Card 
@@ -20,9 +23,11 @@ function PostListing(props) {
             id={post.id} 
             by={post.by}
             deleted={post.deleted}
-            extra={{comments: post.descendants, score: post.score}}>
+            url={post.url}
+            extra={{comments: post.descendants ? post.descendants : 0, score: post.score, replies: post.kids ? post.kids.length : 0}}>
 
             {post.title && <h1 className='listing-title'>{post.title}</h1>}
+
             {post.text && <div className='listing-text'>{ReactHtmlParse(post.text)}</div>}
 
         </Card>
@@ -128,7 +133,7 @@ export default class Posts extends React.Component {
                         {
                             return (
                                 <li key={post.id}>
-                                    <PostListing post={post}/>
+                                    <Post post={post}/>
                                 </li>
                             )
                         }
