@@ -1,4 +1,5 @@
-# haxxor-news
+<h1><b> HAXXOR-NEWS </b></h1>
+
 ### My implementation of the final curriculum task using ReactJS + Bootstrap since I'm not the best a stylings.
 
 # Routes
@@ -26,3 +27,8 @@ Fetches the submission with that id. (W.I.P)
 
 # NOTE:
 My implementations are probably pretty bad bad, still getting used to doing this on my own. I spent a lot of time with promises since I still don't fully understand how they work, so my async loading implementation might take a while.
+
+# HOSTING:
+#### https://trusting-hodgkin-b75c5f.netlify.com/
+
+<i style="color: red"> Mobile unfriendly. Causes Brave Browser (mobile) to crash. Possibly due to all the data and components loading in... :-( </i>
