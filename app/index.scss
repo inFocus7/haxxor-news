@@ -102,6 +102,10 @@ a:hover {
 .loading {
     margin: 0 auto;
     color: $reg-link-color;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .selected-nav-link {

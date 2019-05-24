@@ -4,13 +4,16 @@ import './index.scss'
 import Navbar from './components/Navbar'
 import Loading from './components/Loading'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import { NavProvider } from './context/navigation'
 
 const Submission = React.lazy(() => import('./components/Submission'))
 const Posts = React.lazy(() => import('./components/Posts'))
 const User = React.lazy(() => import('./components/User'))
 
 class App extends React.Component {
+    state = {
+        page_focus: 'Top',
+    }
+
     render() {
         return (
             <Router>
