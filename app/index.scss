@@ -157,3 +157,14 @@ a:hover {
     from {transform: rotate(0deg);}
     to {transform: rotate(360deg);}
 }
+
+.badge:hover, .submission-date:hover {
+    cursor: default;
+}
+
+.badge {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}

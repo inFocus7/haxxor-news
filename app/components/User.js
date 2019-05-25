@@ -15,19 +15,20 @@ export default class User extends React.Component {
     }
     
     async componentDidMount() {
-        fetchUser(this.props.match.params.id)
-            .then((user) => this.setState({
+        try {
+            const user = await fetchUser(this.props.match.params.id)
+            this.setState({
                 user: user,
                 error: null,
                 loading: false
-            }))
-            .catch(({message}) => {
-                this.setState({
-                    user: null,
-                    error: true,
-                    loading: false
-                })
             })
+        } catch (error) {
+            this.setState({
+                user: null,
+                error: 'Error fetching user.',
+                loading: false
+            })
+        }
     }
 
     render() {

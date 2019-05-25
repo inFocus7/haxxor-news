@@ -55,32 +55,37 @@ export default class Posts extends React.Component {
     fetch_Posts = async () => {
         if(this.props.type === 'user') {
             if(!this.state.posts['all']) {
-                console.log('initializing')
                 if(this.props.by === 'all') {
-                    fetchPosts(this.props.type, 'all', this.props.ids)
-                        .then((posts) => this.setState((prevState) => {
+                    try {
+                        const posts = await fetchPosts(this.props.type, 'all', this.props.ids)
+                        this.setState((prevState) => {
                             return {
                                 posts: {...prevState.posts, all: posts},
                                 curr: {...prevState.curr, all: 0},
                                 loading: false, 
                                 error: null
-                            }}))
-                        .catch(() => {this.setState({loading: false, error: 'Failed to fetch posts... 🙁'})})
+                            }})
+                    } catch (error) {
+                        this.setState({loading: false, error: 'Failed to fetch posts... 🙁'})
+                    }
                 }
                 else {
-                    fetchPosts(this.props.type, 'all', this.props.ids)
-                        .then((posts) => this.setState((prevState) => {
+                    try {
+                        const posts = await fetchPosts(this.props.type, 'all', this.props.ids)
+                        this.setState(prevState => {
                             return {
-                                posts: {...prevState.posts, all: posts, [this.props.by]: posts.filter((post) => {return post.type === this.props.by})},
+                                posts: {...prevState, all: posts, [this.props.by]: posts.filter(post => {return post.type === this.props.by})},
                                 curr: {...prevState.curr, all: 0, [this.props.by]: 0},
                                 loading: false, 
                                 error: null
-                            }}))
-                        .catch(() => {this.setState({loading: false, error: 'Failed to fetch posts... 🙁'})})
+                            }
+                        })
+                    } catch (error) {
+                        this.setState({loading: false, error: 'Failed to fetch posts... 🙁'})
+                    }
                 }
             }
             else if(!this.state.posts[this.props.by]) {
-                console.log('reusing all')
                 this.setState((prevState) => {
                     return {
                         posts: {...prevState.posts, [this.props.by]: this.state.posts['all'].filter((post) => {return post.type === this.props.by})},
@@ -97,9 +102,7 @@ export default class Posts extends React.Component {
         else {
             if(!this.state.posts[this.props.by]) {
                 try {
-                    console.log('a')
                     const posts = await fetchPosts(this.props.type, this.props.by)
-                    console.log('h')
                     this.setState((prevState) => {
                         return {
                             posts: {...prevState.posts, [this.props.by]: posts},

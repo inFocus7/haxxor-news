@@ -32,7 +32,7 @@ export default class Card extends React.Component {
         return (
             <div className='card'>
                 <div className='card-header'>
-                    {this.props.extra.score && <div className='info-left badge badge-light'>{this.props.extra.score.toLocaleString()}</div>}
+                    {this.props.extra.score && <div className='info-left badge badge-primary'>{this.props.extra.score.toLocaleString()}</div>}
                     <div className='info-left'>
                         <Link to={`/user/${this.props.by}`}>{this.props.by}</Link>
                     </div>
@@ -46,7 +46,7 @@ export default class Card extends React.Component {
                 </div>
 
                 <div className='card-footer text-muted'>
-                    <div className='info-left'>{(new Date(this.props.date * 1000)).toLocaleString()}</div>
+                    <div className='info-left submission-date'>{(new Date(this.props.date * 1000)).toLocaleString()}</div>
 
                     {this.props.deleted && <div className='info-right badge badge-warning'>Deleted</div>}                    
                     
@@ -67,7 +67,10 @@ export default class Card extends React.Component {
                     {(this.props.type === 'comment')
                         && (
                             <div className='info-right'>
-                            <Link to={`/submission/${this.props.id}`}>
+                            <Link to={{
+                                    pathname: '/submission',
+                                    search: `?id=${this.props.id}`
+                                }}>
                                 {this.props.extra.replies 
                                     ? `${this.props.extra.replies.toLocaleString()} replies`
                                     : `0 replies`}

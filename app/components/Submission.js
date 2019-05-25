@@ -20,13 +20,20 @@ export default class Submission extends React.Component {
         id: 1
     }
 
-    fetch_Post = (id) => {
-        fetchPost(id)
-            .then((post) => this.setState({loading: false, error: null, post: post}))
-            .catch(() => this.setState({
-                loading: false,
-                error: 'Error loading story.'
-            }))
+    fetch_Post = async (id) => {
+        try {
+            const post = await fetchPost(id)
+            this.setState({
+                loading:false,
+                error: null,
+                post: post
+            })
+        } catch (error) {
+            this.setState({
+                loading:false,
+                error: 'Error loading submission.'
+            })
+        }
     }
 
 
@@ -47,7 +54,6 @@ export default class Submission extends React.Component {
         if(this.state.error)
             return <div className='error'>Error loading post.</div>
         
-        // <span>{JSON.stringify(this.state.post)}</span>
         // If comment load link to parent (or parent card) over the comment as reference.
         return (
             <>
