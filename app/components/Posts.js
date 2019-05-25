@@ -23,7 +23,6 @@ export function Post(props) {
             date={post.time} 
             id={post.id} 
             by={post.by}
-            deleted={post.deleted}
             url={post.url}
             extra={{comments: post.descendants ? post.descendants : 0, score: post.score, replies: post.kids ? post.kids.length : 0}}>
 
@@ -136,7 +135,7 @@ export default class Posts extends React.Component {
                 <>
                     <ul className='posts'>
                         {this.state.posts[this.props.by].map((post) => {
-                            if(post)
+                            if(post && !post.deleted)
                             {
                                 return (
                                     <li key={post.id}>
