@@ -137,15 +137,47 @@ a:hover {
     border: none;
 }
 
+#filter {
+    position: fixed;
+    bottom: 10;
+    left: 10;
+    opacity: .6;
+    transition-property: transform;
+    transition-duration: 1.5s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+#filter:hover {
+    opacity: 1;
+    animation-name: nudge; 
+    animation-duration: 3s; 
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+@keyframes nudge {
+    0% { transform: rotate(0deg); }
+    2% { transform: rotate(0deg); }
+    5% { transform: rotate(-10deg); }
+    12% { transform: rotate(10deg); }
+   18% { transform: rotate(0deg); }
+   100% {transform: rotate(0deg);}
+}
+
 #reload {
     position: fixed;
+    opacity: .6;
     bottom: 10;
     right: 10;
     transition-property: transform;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
     transition-duration: 1.5s;
 }
 
 #reload:hover {
+    opacity: 1;
     animation-name: rotate; 
     animation-duration: 2.5s; 
     animation-iteration-count: infinite;
@@ -153,9 +185,13 @@ a:hover {
     transform: scale(1.1);
 }
 
+
 @keyframes rotate {
-    from {transform: rotate(0deg);}
-    to {transform: rotate(360deg);}
+    //from {transform: rotate(0deg);}
+    //to {transform: rotate(360deg);}
+    0% {transform: rotate(0deg)}
+    25% {transform: rotate(180deg)}
+    100% {transform: rotate(360deg)}
 }
 
 .badge:hover, .submission-date:hover {

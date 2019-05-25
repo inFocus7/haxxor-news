@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import Card from './Card'
 import ReactHtmlParse from 'react-html-parser'
 import Loading from './Loading'
-import {FaSyncAlt} from 'react-icons/fa'
+import {FaSyncAlt, FaFilter} from 'react-icons/fa'
 
 // Fix loading on component update
 
@@ -155,6 +155,12 @@ export default class Posts extends React.Component {
                     <button type='button' id='reload' className='btn-clear'>
                         <FaSyncAlt 
                             color='rgb(14, 145, 206)' 
+                            size={25}/>
+                    </button>
+
+                    <button type='button' id='filter' className='btn-clear'>
+                        <FaFilter 
+                            color='rgb(130, 130, 130)' 
                             size={25}/>
                     </button>
                 </>
