@@ -23,7 +23,7 @@ Fetches the submission with id passed as an 'id' parameter. (W.I.P)
 - Implement comments and replies on stories.
 - If viewing a comment submission, show post with the comment being the focus.
 - Implement sync/reload button. [User: If syncing, I could parse through their current submission ids and compare with their submissions fetched, if theres a difference, update submissions shown.] [Posts: Same as user] [Note: I could look into the APIs subscriptions thing to see if something could be of use there.]
-- Implement global navigation selection.
+- Implement global navigation selection. (or a better one which updates well)
 - Debug problems (such as when loading multiple content).
 - Add a Tooltip to some badges.
 - Implement filters (sorting by...)

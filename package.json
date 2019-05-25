@@ -9,13 +9,17 @@
     "build-win": "SET NODE_ENV=production&& webpack"
   },
   "babel": {
-    "presets": [[
-      "@babel/preset-env", {
-        "useBuiltIns": "entry"
-      }],
+    "presets": [
+      [
+        "@babel/preset-env",
+        {
+          "useBuiltIns": "entry"
+        }
+      ],
       "@babel/preset-react"
     ],
     "plugins": [
+      ["@babel/plugin-proposal-decorators", {"legacy": true}],
       "@babel/plugin-proposal-class-properties",
       "syntax-dynamic-import"
     ]
@@ -25,6 +29,7 @@
   "devDependencies": {
     "@babel/core": "^7.4.5",
     "@babel/plugin-proposal-class-properties": "^7.4.4",
+    "@babel/plugin-proposal-decorators": "^7.4.4",
     "@babel/preset-env": "^7.4.5",
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.6",
@@ -46,6 +51,7 @@
     "query-string": "^6.5.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "react-hashchange": "^0.1.0",
     "react-html-parser": "^2.0.2",
     "react-icons": "^3.7.0",
     "react-loading": "^2.0.3",

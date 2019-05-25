@@ -10,10 +10,6 @@ const Posts = React.lazy(() => import('./components/Posts'))
 const User = React.lazy(() => import('./components/User'))
 
 class App extends React.Component {
-    state = {
-        page_focus: 'Top',
-    }
-
     render() {
         return (
             <Router>

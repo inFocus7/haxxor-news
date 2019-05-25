@@ -63,7 +63,7 @@ export default class User extends React.Component {
                 {user.about && <p className='about'>{ReactHtmlParse(user.about)}</p>}
 
                 <Navbar 
-                    default={def} 
+                    route='user' 
                     content={[
                         {text: 'All', type: 'href', ref: `/user/${user.id}`}, 
                         {text: 'Stories', type: 'href', ref: `/user/${user.id}/stories`}, 
