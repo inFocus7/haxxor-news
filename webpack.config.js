@@ -3,7 +3,7 @@ const HTMLWebpackPlugin = require('html-webpack-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
 
 module.exports = {
-    entry: './app/index.js',
+    entry: ['@babel/polyfill', './app/index.js'],
     module: {
         rules: [
             { test: /\.(js)$/, use: 'babel-loader' },

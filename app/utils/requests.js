@@ -1,78 +1,55 @@
 const api = 'https://hacker-news.firebaseio.com/v0'
 
-function errorCheck(content, type) {
-    if(content && content.error) {
-        throw new Error(`Unable to fetch ${type}.`)
-    }
-}
-
-export function fetchPosts(type='general', by, ids=null) {
+export async function fetchPosts(type='general', by, ids=null) {
     if(type === 'general') {
-        return fetchPostsIds(type, by)
-            .then((postIds) => {   
-                errorCheck(postIds, 'posts')
-                return Promise.all(postIds.map((postId) => {return fetchPost(postId)}))
-            })
+        try {
+            const posts = await fetchPostsIds(type, by)
+            return Promise.all(posts.map((postId) => {return fetchPost(postId)}))
+        } catch (error) {
+            throw new Error(`Unable to fetch posts...`)   
+        }
     }
     else if (type === 'user') {
-        console.log('fetching user content: ', ids, by)
-        return Promise.all(ids.map((postId) => {return fetchPost(postId)}))
-            .then((posts) => {
-                if(by === 'all')
-                    return posts
-                
-                return posts.filter((post) => {return post.type === by})
-            })
+        try {
+            const posts = Promise.all(ids.map((postId) => {return fetchPost(postId)}))
+            
+            if(by === 'all')
+                return posts
+            
+            return posts.filter((post) => {return post.type === by})
+        } catch(error) {
+            throw new Error(`Unable to fetch ${by} posts.`)
+        }
     } 
 }
 
-export function fetchPostsIds(type, by) {
-    if(type === 'general') {
-        switch (by) {
-            case 'top':
-                return fetch(`${api}/topstories.json`)
-                    .then((res) => res.json())
-                    .then((post_ids) => {
-                        errorCheck(post_ids, 'posts')
-                        return post_ids
-                    })
-            case 'new':
-                return fetch(`${api}/newstories.json`)
-                    .then((res) => res.json())
-                    .then((post_ids) => {
-                        errorCheck(post_ids, 'posts')
-                        return post_ids
-                    })
-            default:
-                return fetch(`${api}/topstories.json`)
-                    .then((res) => res.json())
-                    .then((post_ids) => {
-                        errorCheck(post_ids, 'posts')
-                        return post_ids
-                    })
-        }
+async function fetchPostsIds(type, by) {
+    try {
+        const posts = await fetch(`${api}/${by}stories.json`)
+        return posts.json()
+    } catch(error) {
+        throw new Error(`Unable to fetch ${by} stories.`)
     }
 }
 
-export function fetchPost(post_id) {
-    return fetch(`${api}/item/${post_id}.json`)
-        .then((res) => res.json())
-        .then((post) => {
-            errorCheck(post, 'post')
-            //console.log('returning ', post)
-            return post
-        })
+export async function fetchPost(post_id) {
+    try {
+        const post = await fetch(`${api}/item/${post_id}.json`)
+        return post.json()
+    } catch(error) {
+        throw new Error(`Unable to fetch submission #${post_id}.`)
+    }
 }
 
-export function fetchUser(user_id) {    
-    return fetch(`${api}/user/${user_id}.json`)
-        .then((res) => res.json())
-        .then((user) => {
-            errorCheck(user, 'user')
-            return user
-        })
+export async function fetchUser(user_id) {    
+    try {
+        const user = await fetch(`${api}/user/${user_id}.json`)
+        return user.json()
+    } catch (error) {
+        throw new Error(`Unable to find ${user_id}`)
+    }
 }
 
-export function fetchComments(post_id) {
+export async function fetchComments(post_id) {
 
 }

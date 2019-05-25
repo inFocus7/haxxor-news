@@ -45,7 +45,11 @@ export default class Card extends React.Component {
                     {(this.props.type === 'story')
                         && (
                         <div className='info-right'>
-                            <Link to={`/submission/${this.props.id}`}>
+                            <Link 
+                                to={{
+                                    pathname: '/submission',
+                                    search: `?id=${this.props.id}`
+                                }}>
                                 {this.props.extra.comments 
                                     ? `${this.props.extra.comments.toLocaleString()} comments`
                                     : `0 comments`}

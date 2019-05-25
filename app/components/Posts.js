@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import Card from './Card'
 import ReactHtmlParse from 'react-html-parser'
 import Loading from './Loading'
+import {FaSyncAlt} from 'react-icons/fa'
 
 // Fix loading on component update
 
@@ -27,7 +28,7 @@ export function Post(props) {
             extra={{comments: post.descendants ? post.descendants : 0, score: post.score, replies: post.kids ? post.kids.length : 0}}>
 
             {post.title && <h1 className='listing-title'>{post.title}</h1>}
-
+            {post.title && post.text && <hr/>}
             {post.text && <div className='listing-text'>{ReactHtmlParse(post.text)}</div>}
 
         </Card>
@@ -52,7 +53,7 @@ export default class Posts extends React.Component {
         by: 'top'
     }
 
-    fetch_Posts = () => {
+    fetch_Posts = async () => {
         if(this.props.type === 'user') {
             if(!this.state.posts['all']) {
                 console.log('initializing')
@@ -96,15 +97,30 @@ export default class Posts extends React.Component {
         }
         else {
             if(!this.state.posts[this.props.by]) {
-                fetchPosts(this.props.type, this.props.by)
-                    .then((posts) => this.setState((prevState) => {
+                // fetchPosts(this.props.type, this.props.by)
+                //     .then((posts) => this.setState((prevState) => {
+                //         console.log(posts)
+                //         return {
+                //             posts: {...prevState.posts, [this.props.by]: posts},
+                //             loading: false,
+                //             error: null
+                //         }
+                //     }))
+                //     .catch(() => {this.setState({loading: false, error: 'Failed to fetch posts... 🙁'})})
+                try {
+                    console.log('a')
+                    const posts = await fetchPosts(this.props.type, this.props.by)
+                    console.log('h')
+                    this.setState((prevState) => {
                         return {
                             posts: {...prevState.posts, [this.props.by]: posts},
                             loading: false,
-                            error: null
+                            error:null
                         }
-                    }))
-                    .catch(() => {this.setState({loading: false, error: 'Failed to fetch posts... 🙁'})})
+                    })
+                } catch (error) {
+                    this.setState({loading: false, error: 'Failed to fetch posts... 🙁'})
+                }
             }
             else {
                 this.setState({loading: false, error:null})
@@ -127,18 +143,26 @@ export default class Posts extends React.Component {
     render() {
         if(this.state.posts[this.props.by]) {
             return (
-                <ul className='posts'>
-                    {this.state.posts[this.props.by].map((post) => {
-                        if(post)
-                        {
-                            return (
-                                <li key={post.id}>
-                                    <Post post={post}/>
-                                </li>
-                            )
-                        }
-                    })}
-                </ul>
+                <>
+                    <ul className='posts'>
+                        {this.state.posts[this.props.by].map((post) => {
+                            if(post)
+                            {
+                                return (
+                                    <li key={post.id}>
+                                        <Post post={post}/>
+                                    </li>
+                                )
+                            }
+                        })}
+                    </ul>
+
+                    <button type='button' id='reload' className='btn-clear'>
+                        <FaSyncAlt 
+                            color='rgb(14, 145, 206)' 
+                            size={25}/>
+                    </button>
+                </>
             )
         }
 

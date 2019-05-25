@@ -125,5 +125,35 @@ a:hover {
 .profile {
     .username {
         color: $reg-select-color;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
     }
+}
+
+.btn-clear {
+    background: none;
+    border: none;
+}
+
+#reload {
+    position: fixed;
+    bottom: 10;
+    right: 10;
+    transition-property: transform;
+    transition-duration: 1.5s;
+}
+
+#reload:hover {
+    animation-name: rotate; 
+    animation-duration: 2.5s; 
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    transform: scale(1.1);
+}
+
+@keyframes rotate {
+    from {transform: rotate(0deg);}
+    to {transform: rotate(360deg);}
 }

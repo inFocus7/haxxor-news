@@ -3,8 +3,8 @@ import {fetchPost} from '../utils/requests'
 import Loading from './Loading'
 import Card from './Card'
 import {Post} from './Posts'
-
-// Will do BFS from starting id to show all root comments + their children
+import queryString from 'query-string'
+// Will do DFS from starting id to show all root comments + their children
 function Children(props) {
     
 }
@@ -31,7 +31,12 @@ export default class Submission extends React.Component {
 
 
     componentDidMount() {
-        this.fetch_Post(this.props.match.params.id)
+        const { id } = queryString.parse(this.props.location.search)
+        
+        if(id)
+            this.fetch_Post(id)
+        else 
+            this.fetch_Post(1)
     }
 
 

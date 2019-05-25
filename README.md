@@ -14,13 +14,14 @@ Fetches latest stories and displays them.
 ## /user/:id
 Fetches user alongside user information (their submissions) and displays them.
 
-## /submission/:id
-Fetches the submission with that id. (W.I.P)
+## /submission
+Fetches the submission with id passed as an 'id' parameter. (W.I.P)
 
 # TODO:
 - Asynchronously fetch & display submissions to increase loading speeds.
 - Implement comments and replies on stories
 - If viewing a comment submission, show post with the comment being the focus
+- Implement sync/reload button
 - Implement global navigation selection.
 - Debug problems (such as when loading multiple content).
 - Add a Tooltip to some badges

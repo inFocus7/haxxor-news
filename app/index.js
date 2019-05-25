@@ -25,7 +25,7 @@ class App extends React.Component {
                             <Route path='/new' render={() => <Posts by='new' type='general'/>}/>
                             <Route exact path='/user/:id' component={User}/>
                             <Route path='/user/:id/:view' component={User}/>
-                            <Route path='/submission/:id' component={Submission}/>
+                            <Route path='/submission' component={Submission}/>
                             <Route render={() => <h1>404: Not Found... 😦</h1>}/>
                         </Switch>
                     </React.Suspense>

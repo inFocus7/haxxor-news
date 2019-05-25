@@ -9,8 +9,10 @@
     "build-win": "SET NODE_ENV=production&& webpack"
   },
   "babel": {
-    "presets": [
-      "@babel/preset-env",
+    "presets": [[
+      "@babel/preset-env", {
+        "useBuiltIns": "entry"
+      }],
       "@babel/preset-react"
     ],
     "plugins": [
@@ -37,6 +39,7 @@
     "webpack-dev-server": "^3.4.1"
   },
   "dependencies": {
+    "@babel/polyfill": "^7.4.4",
     "babel-plugin-syntax-dynamic-import": "^6.18.0",
     "history": "^4.9.0",
     "prop-types": "^15.7.2",

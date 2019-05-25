@@ -14,7 +14,7 @@ export default class User extends React.Component {
         posts: {'stories': null, 'comments': null, 'polls': null}
     }
     
-    componentDidMount() {
+    async componentDidMount() {
         fetchUser(this.props.match.params.id)
             .then((user) => this.setState({
                 user: user,
