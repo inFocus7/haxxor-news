@@ -12,11 +12,19 @@ export default class Card extends React.Component {
         extra: PropTypes.object
     }
 
+    badgeTypes = {
+        story: 'primary',
+        job: 'success',
+        comment: 'secondary',
+        poll: 'info',
+        404: 'danger'
+    }
+
     static defaultProps = {
-        type: 'Err',
-        date: '0/0/0000',
+        type: '404',
+        date: '4/0/4',
         id: '0',
-        by: 'Error Man',
+        by: 'Not Found',
         deleted: false
     }
 
@@ -28,7 +36,7 @@ export default class Card extends React.Component {
                     <div className='info-left'>
                         <Link to={`/user/${this.props.by}`}>{this.props.by}</Link>
                     </div>
-                    <div className='info-right badge badge-info'>{this.props.type }</div>
+                    <div className={`info-right badge badge-${this.badgeTypes[this.props.type]}`}>{this.props.type}</div>
                 </div>
 
                 <div className='card-body'>

@@ -97,16 +97,6 @@ export default class Posts extends React.Component {
         }
         else {
             if(!this.state.posts[this.props.by]) {
-                // fetchPosts(this.props.type, this.props.by)
-                //     .then((posts) => this.setState((prevState) => {
-                //         console.log(posts)
-                //         return {
-                //             posts: {...prevState.posts, [this.props.by]: posts},
-                //             loading: false,
-                //             error: null
-                //         }
-                //     }))
-                //     .catch(() => {this.setState({loading: false, error: 'Failed to fetch posts... 🙁'})})
                 try {
                     console.log('a')
                     const posts = await fetchPosts(this.props.type, this.props.by)
@@ -155,6 +145,9 @@ export default class Posts extends React.Component {
                                 )
                             }
                         })}
+
+                        {this.state.posts[this.props.by].length === 0 && (
+                            <h3 className='text-center' style={{padding: 20}}>No submissions found... 🙁</h3>)}
                     </ul>
 
                     <button type='button' id='reload' className='btn-clear'>
