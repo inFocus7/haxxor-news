@@ -36,7 +36,7 @@ export default class User extends React.Component {
             return <Loader text='Loading User'/>
 
         if(this.state.error)
-            return <h1>{this.state.error}</h1>
+            return <h3 className='text-center bad-response'>{this.state.error}</h3>
 
         const user = this.state.user
         let by = this.props.match.params.view ? this.props.match.params.view : 'all' 

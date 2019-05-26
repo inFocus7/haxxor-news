@@ -149,7 +149,7 @@ export default class Posts extends React.Component {
                         })}
 
                         {this.state.posts[this.props.by].length === 0 && (
-                            <h3 className='text-center' style={{padding: 20}}>No submissions found... 🙁</h3>)}
+                            <h3 className='text-center bad-response'>No submissions found... 🙁</h3>)}
                     </ul>
 
                     <button type='button' id='reload' className='btn-clear'>
@@ -168,7 +168,7 @@ export default class Posts extends React.Component {
         }
 
         if(this.state.error)
-            return <h1>{this.state.error}</h1>
+            return <h3 className='text-center bad-response'>{this.state.error}</h3>
         
         return <Loading text='Loading Posts'/>
     }

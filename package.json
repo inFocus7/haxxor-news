@@ -19,7 +19,12 @@
       "@babel/preset-react"
     ],
     "plugins": [
-      ["@babel/plugin-proposal-decorators", {"legacy": true}],
+      [
+        "@babel/plugin-proposal-decorators",
+        {
+          "legacy": true
+        }
+      ],
       "@babel/plugin-proposal-class-properties",
       "syntax-dynamic-import"
     ]
@@ -56,6 +61,7 @@
     "react-icons": "^3.7.0",
     "react-loading": "^2.0.3",
     "react-router": "^5.0.0",
-    "react-router-dom": "^5.0.0"
+    "react-router-dom": "^5.0.0",
+    "react-router-hash-link": "^1.2.1"
   }
 }
