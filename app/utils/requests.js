@@ -1,29 +1,19 @@
 const api = 'https://hacker-news.firebaseio.com/v0'
 
 export async function fetchPosts(type='general', by, ids=null) {
-    if(type === 'general') {
-        try {
-            const posts = await fetchPostsIds(type, by)
-            return Promise.all(posts.map((postId) => {return fetchPost(postId)}))
-        } catch (error) {
-            throw new Error(`Unable to fetch posts...`)   
-        }
+    try {
+        const posts = Promise.all(ids.map((postId) => {return fetchPost(postId)}))
+        
+        if(type === 'general' || by === 'all')
+            return posts
+        
+        return posts.filter((post) => {return post.type === by})
+    } catch(error) {
+        throw new Error(`Unable to fetch ${by} posts.`)
     }
-    else if (type === 'user') {
-        try {
-            const posts = Promise.all(ids.map((postId) => {return fetchPost(postId)}))
-            
-            if(by === 'all')
-                return posts
-            
-            return posts.filter((post) => {return post.type === by})
-        } catch(error) {
-            throw new Error(`Unable to fetch ${by} posts.`)
-        }
-    } 
 }
 
-async function fetchPostsIds(type, by) {
+export async function fetchPostsIds(by) {
     try {
         const posts = await fetch(`${api}/${by}stories.json`)
         return posts.json()

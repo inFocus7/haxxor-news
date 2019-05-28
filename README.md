@@ -18,7 +18,10 @@ Fetches user alongside user information (their submissions) and displays them.
 Fetches the submission with id passed as an 'id' parameter. (W.I.P)
 
 # TODO:
-- Asynchronously fetch & display submissions to increase loading speeds.
+- Implement dynaload for non-all
+- Fix issue w/ dynaloading two sections causing infinite loading...
+- Implement dynaload on posts.
+- Fix unmount dynaloading.
 - Think of way to only fetch (x + (y*numOfLoadMoreClks)) submission. Would use this approach, but getting user comments involves going through <i>all</i> of their submissions, which could interfere with that logic. Since I have to parse through all to get x posts, it would still be slow. [Note: I could add a function which fetches all posts (normally) until I find x of whatever they're trying to search for, then stall the fetching, store the remainder of posts a user has made, and fetch those when necessary...]
 - Implement comments and replies on stories.
 - If viewing a comment submission, show post with the comment being the focus.

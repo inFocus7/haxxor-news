@@ -55,6 +55,7 @@
     "prop-types": "^15.7.2",
     "query-string": "^6.5.0",
     "react": "^16.8.6",
+    "react-bottom-scroll-listener": "^2.1.2",
     "react-dom": "^16.8.6",
     "react-hashchange": "^0.1.0",
     "react-html-parser": "^2.0.2",
